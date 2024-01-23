@@ -6,8 +6,8 @@ void ofApp::setup(){
 
     gui.setup();
     gui.add(gridRes.setup("Grid Resolution", 50, 10, 100));
-    gui.add(textureChng.setup("Texture Change", 1, 1, 9));
-    gui.add(noiseScale.setup("Noise Scale", 0.01, 0.001, 0.1));
+    gui.add(textureChng.setup("Texture Change", 2, 1, 9));
+    gui.add(noiseScale.setup("Noise Scale", 0.001, 0.001, 0.1));
 }
 
 //--------------------------------------------------------------
@@ -28,13 +28,13 @@ void ofApp::draw(){
     {
         for(int j = 1; j < height; j += rows)
         {
-            // ofDrawLine(i, 0, i, height);
-            // ofDrawLine(0, j, witdh, j);
+            ofDrawLine(i, 0, i, height);
+            ofDrawLine(0, j, witdh, j);
 
             int colIndex = i / cols;
             int rowIndex = j / rows;
 
-            float noiseValue = 1; //ofNoise(i * 0.2 * noiseScale, j * 0.2 * noiseScale); //perlin noise texture add.
+            float noiseValue = ofNoise(i * 0.2 * noiseScale * ofGetElapsedTimef(), j * 0.2 * noiseScale * ofGetElapsedTimef()); //perlin noise texture add.
 
             if ((colIndex + rowIndex) % txtr == 0) 
             {
@@ -44,10 +44,11 @@ void ofApp::draw(){
             {
                 ofSetColor(255 * noiseValue); 
             }
-            ofDrawRectangle(i, j, cols, rows);
+            //ofDrawRectangle(i, j, cols, rows);
+            //ofDrawCircle(i, j, noiseValue);
         }
     }
-    gui.draw();
+    //gui.draw();
 }
 
 //--------------------------------------------------------------
