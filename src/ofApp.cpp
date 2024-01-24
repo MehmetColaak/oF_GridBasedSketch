@@ -20,7 +20,7 @@ void ofApp::draw(){
     int witdh = ofGetWidth();
     int height = ofGetHeight();
     int res = gridRes;
-    int txtr = textureChng + ofGetElapsedTimef();
+    int txtr = textureChng;
     int cols = witdh / res;
     int rows = height / res;
 
@@ -48,7 +48,7 @@ void ofApp::draw(){
             //ofDrawCircle(i, j, noiseValue);
         }
     }
-    //gui.draw();
+    gui.draw();
 }
 
 //--------------------------------------------------------------
